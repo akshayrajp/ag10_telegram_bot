@@ -72,7 +72,7 @@ class Query:
 
     def preprocessor(self, input):
         if(input != "all"):
-            return self.computer(self.querier(30, input), input)
+            return self.computer(self.querier(60, input), input)
         else:
             climate_variables = ["usvh", "temp", "humid"]
             response_text = ""
