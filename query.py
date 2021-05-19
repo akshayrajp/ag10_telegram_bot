@@ -77,6 +77,6 @@ class Query:
             climate_variables = ["usvh", "temp", "humid"]
             response_text = ""
             for i in climate_variables:
-                response_text += self.computer(self.querier(30, i), i)
+                response_text += self.computer(self.querier(60, i), i)
                 response_text += "\n\n\n"
             return response_text
