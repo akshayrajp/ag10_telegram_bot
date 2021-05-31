@@ -1,6 +1,5 @@
 import constants as C
 import responses as R
-import query as Q
 from telegram.ext import *
 
 
@@ -24,10 +23,6 @@ def handle_message(update, context):
     # send the output as a reply to the user
     update.message.reply_text(response)
 
-def alert_message(update, context):
-    # send alert message to the user
-    update.message.reply_text(response)
-
 def handle_error(update, context):
     # print error message to the console
     print(f"Update {update} caused error {context.error}")
@@ -44,9 +39,6 @@ def main():
     # handle user messages
     dispatcher.add_handler(MessageHandler(Filters.text, handle_message))
 
-    # handle alert messages
-    dispatcher.add_handler(MessageHandler(Filters.text, alert_message))
-
     # handle errors and print them out to console
     dispatcher.add_error_handler(handle_error)
 
@@ -54,11 +46,6 @@ def main():
     # and remain idle if there are no messages being receieved
     updater.start_polling()
     updater.idle()
-
-    # alert messages
-    while True:
-        alertMessage = Q.alertMonitor()
-        alert_message(alertMessage)
 
 
 # start the process
