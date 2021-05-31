@@ -80,3 +80,25 @@ class Query:
                 response_text += self.computer(self.querier(60, i), i)
                 response_text += "\n\n\n"
             return response_text
+
+    def alertMonitor(self):
+
+        # run queries for temperature, humidity, radioactivity
+        temp = self.querier(1, "temp")
+        humid = self.querier(1, "humid")
+        usvh = self.querier(1, "usvh")
+
+        response_text = ""
+
+        if(temp[-1] > 25):
+            response_text += f"ALERT! TEMPERATURE THRESHOLD EXCEEDED! LAST TEMPERATURE VALUE = {temp[-1]} °C\n\n"
+    
+        if(humid[-1] > 25):
+            response_text += f"ALERT! HUMIDITY THRESHOLD EXCEEDED! LAST HUMIDITY VALUE = {humid[-1]} %\n\n"
+
+        if(usvh[-1] > 1.00):
+            response_text += f"ALERT! RADIOACTIVITY THRESHOLD EXCEEDED! LAST RADIATION VALUE = {usvh[-1]} µSv/hr\\n\n"
+
+        return response_text
+
+
